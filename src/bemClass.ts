@@ -1,7 +1,7 @@
 export type TBlock = string;
 export type TElement = string;
-export type TModifiers = Record<string, string | number | boolean>;
-export type TMixes = Array<string>;
+export type TModifiers = Record<string, string | number | boolean | undefined>;
+export type TMixes = Array<string | undefined>;
 export type TClassName = string;
 
 const isElement = (arg: TElement | TModifiers | TMixes): arg is TElement => (typeof arg) === 'string';
@@ -40,7 +40,7 @@ const concatModifiers = (modifierSeparator: string, modifierValueSeparator: stri
 
 const concatMixes = (cn: TClassName, mixes: TMixes): TClassName =>
   mixes.length > 0 ?
-    (cn.length > 0 ? `${cn} ` : '') + mixes.join(' ')
+    (cn.length > 0 ? `${cn} ` : '') + mixes.filter(Boolean).join(' ')
     :
     cn;
 

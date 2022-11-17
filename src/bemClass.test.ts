@@ -1,4 +1,4 @@
-import {describe, expect, test} from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 import { bemClass } from './bemClass';
 
 describe('bemClass', () => {
@@ -45,6 +45,11 @@ describe('bemClass', () => {
       expect(cn({ electric: true, color: 'red' }, ['transport', 'vehicle'])).toEqual('car car--electric car--color-red transport vehicle');
     });
 
+    test('should handle undefined', () => {
+      const cn = bemClass('car');
+      expect(cn({ electric: undefined, color: 'red' }, [undefined, 'transport'])).toEqual('car car--color-red transport');
+    });
+
   });
 
   describe('for elements', () => {
@@ -86,6 +91,11 @@ describe('bemClass', () => {
     test('with modifiers and mixes', () => {
       const cn = bemClass('car');
       expect(cn('wheel', { circular: true, color: 'black' }, ['part', 'rubber'])).toEqual('car__wheel car__wheel--circular car__wheel--color-black part rubber');
+    });
+
+    test('should handle undefined', () => {
+      const cn = bemClass('car');
+      expect(cn('wheel', { circular: undefined, color: 'black' }, ['part', undefined])).toEqual('car__wheel car__wheel--color-black part');
     });
   });
 
