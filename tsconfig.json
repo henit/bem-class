@@ -5,6 +5,7 @@
     "removeComments": true, // Strips all comments from TypeScript files when converting into JavaScript- you rarely read compiled code so this saves space
     "target": "ESNext",
     "baseUrl": "./",
+    "declaration": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "sourceMap": true,
